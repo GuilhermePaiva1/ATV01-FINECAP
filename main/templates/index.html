@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+    .Frase-p {
+        margin: auto;
+        font-size: 30px;
+        color: blueviolet;
+    }
+    .conteiner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 100px;
+        margin-bottom: 31.7%;
+    }
+
+</style>
+
+<body>
+    <div class="conteiner">
+        <div class="card">
+            <div class="card">
+                <img src="{% static 'images/background.jpg' %}" alt="Imagem de Decoração" class="card-image">
+            </div>
+            <h2 class="Frase-p">Reserve já o seu Stand</h2>
+            <p>Garanta seu sucesso nessa Finecap!</p>
+            <button class="btn btn-outline-dark" type="submit">
+                <a class="navbar-brand" href="{% url 'criar_reserva' %}">Clique para fazer sua reserva</a>
+                <span class="badge bg-dark text-white ms-1 rounded-pill">!</span>
+            </button>
+        </div>
+    </div>
+    
+</body>
+
+</html>
+{% endblock %}
