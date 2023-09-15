@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<main>
+  <div class="container mt-5">
+    <h2 class="font-weight-bold">Detalhes:</h2>
+  
+    <div class="container-fluid bg-light p-4">
+      <div class="row mb-2">
+        <div class="col-md-2 col-sm-12 font-weight-bold">Empresa:</div>
+        <div class="col-md-10 col-sm-12">{{ reserva.nome_empresa }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 col-sm-12 font-weight-bold">CNPJ:</div>
+        <div class="col-md-10 col-sm-12">{{ reserva.cnpj }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 col-sm-12 font-weight-bold">Categoria:</div>
+        <div class="col-md-10 col-sm-12">{{ reserva.categoria_empresa }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 col-sm-12 font-weight-bold">Stand:</div>
+        <div class="col-md-10 col-sm-12">{{ reserva.stand }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 col-sm-12 font-weight-bold">Reserva:</div>
+        <div class="col-md-10 col-sm-12">
+          {% if reserva.quitado %}
+            <i class="fas fa-check text-success"></i> <!-- Ícone de check (verde) para True -->
+          {% else %}
+            <i class="fas fa-times text-danger"></i> <!-- Ícone de "x" (vermelho) para False -->
+          {% endif %}
+        </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

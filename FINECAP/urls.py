@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path
-from main.views import criar_reserva, detalhe, index, listar_reserva, remover
+from main.views import criar_reserva, detalhe, index, listar_reserva, remover, ReservaUpdateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('listar_reserva/', listar_reserva, name="listar"),
     path('detalhe/<int:id>/', detalhe, name="detalhe"),
     path('remover/<int:id>/', remover, name="remover"),
+    path('update/<int:pk>/', ReservaUpdateView.as_view(), name='update_reserva'),
 ]

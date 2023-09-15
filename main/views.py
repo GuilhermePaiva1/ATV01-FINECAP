@@ -1,15 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import reserva, stand
 from .forms import reservaForm
+from django.urls import reverse_lazy
+from django.views import generic
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'main/index.html')
 
 def listar_reserva(request):
     reservas = reserva.objects.all() 
     context = {'reservas': reservas}
-    return render(request, 'Listagem.html', context)
+    return render(request, 'main/Listagem.html', context)
 
 def criar_reserva(request):
     if request.method == "POST":
@@ -21,7 +23,7 @@ def criar_reserva(request):
     else: 
         form = reservaForm()
 
-    return render(request, 'reserva.html', {'form': form})
+    return render(request, 'main/reserva.html', {'form': form})
 
 def remover(request, id):
     reserva_obj = get_object_or_404(reserva, id=id)  
@@ -31,5 +33,11 @@ def remover(request, id):
 def detalhe(request, id):
     reserva_obj = get_object_or_404(reserva, id=id) 
     context = {'reserva': reserva_obj}
-    return render(request, 'detalhe_reserva.html', context)
+    return render(request, 'main/detalhe_reserva.html', context)
+
+class ReservaUpdateView(generic.UpdateView):
+    model = reserva
+    form_class = reservaForm
+    success_url = reverse_lazy("main/Listagem.html")
+    template_name = "main/Listagem.html"
 
