@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import reserva, stand 
+
+from . import models
+
 
 # Register your models here.
-@admin.register(reserva)
-class reservaAdmin(admin.ModelAdmin):
-    list_display = ("nome_empresa",'quitado',)
-    
-@admin.register(stand)
 class StandAdmin(admin.ModelAdmin):
-    list_display = ('localizacao','valor',)
+    search_fields = ["localização", "valor"]
+    readonly_fields = ["updated_by", "created_at"]
+
+class ReservaAdmin(admin.ModelAdmin):
+    search_fields = ["cnpj_empresa"]
+    readonly_fields = ["updated_by", "created_at"]
+
+admin.site.register(models.Stand, StandAdmin)
+admin.site.register(models.Reserva, ReservaAdmin)

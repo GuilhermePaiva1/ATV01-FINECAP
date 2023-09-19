@@ -1,35 +1,55 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import reserva, stand
-from .forms import reservaForm
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views import generic
+
+from .forms import ReservaForm
+from .models import Reserva
 # Create your views here.
 
-def index(request):
-    return render(request, 'index.html')
+#def index(request):
+#    return render(request, 'index.html')
+class HomeView(generic.TemplateView):
+    template_name = "index.html"
 
-def listar_reserva(request):
-    reservas = reserva.objects.all() 
-    context = {'reservas': reservas}
-    return render(request, 'Listagem.html', context)
+#def listar_reserva(request):
+ #   reservas = reserva.objects.all() 
+  #  context = {'reservas': reservas}
+   # return render(request, 'Listagem.html', context)
+class ReservasListView(generic.ListView):
+    model = Reserva
 
-def criar_reserva(request):
-    if request.method == "POST":
+#def criar_reserva(request):
+#    if request.method == "POST":
+#
+#       form = reservaForm(request.POST)
+#        if form.is_valid():
+#            form.save()
+#            return redirect('listar')
+#    else: 
+#        form = reservaForm()
+#
+#    return render(request, 'reserva.html', {'form': form})
+class ReservaCreateView(generic.CreateView):
+    model = Reserva
+    form_class = ReservaForm
+    success_url = reverse_lazy("main:Listagem")
 
-        form = reservaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('listar')
-    else: 
-        form = reservaForm()
+#def remover(request, id):
+#    reserva_obj = get_object_or_404(reserva, id=id)  
+#    reserva_obj.delete()
+#    return redirect('listar')
+class ReservaDeleteView(generic.DeleteView):
+    model = Reserva
+    success_url = reverse_lazy("main:Listagem")
 
-    return render(request, 'reserva.html', {'form': form})
+#def detalhe(request, id):
+#    reserva_obj = get_object_or_404(reserva, id=id) 
+#    context = {'reserva': reserva_obj}
+#    return render(request, 'detalhe_reserva.html', context)
+class ReservaDetailView(generic.DetailView):
+    model = Reserva
 
-def remover(request, id):
-    reserva_obj = get_object_or_404(reserva, id=id)  
-    reserva_obj.delete()
-    return redirect('listar')
-
-def detalhe(request, id):
-    reserva_obj = get_object_or_404(reserva, id=id) 
-    context = {'reserva': reserva_obj}
-    return render(request, 'detalhe_reserva.html', context)
-
+class ReservaUpdateView(generic.UpdateView):
+    model = Reserva
+    form_class = ReservaForm
+    success_url = reverse_lazy("main:Listagem")
