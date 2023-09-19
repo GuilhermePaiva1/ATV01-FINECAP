@@ -17,14 +17,14 @@
       </tr>
     </thead>
     <tbody>
-      {% for reserva in reservas %}  
+      {% for object in objects %}  
       <tr>
-        <td style="width: 40%;">{{ reserva.nome_empresa }}</td>
-        <td style="width: 30%;">{{ reserva.stand }}</td>
+        <td style="width: 40%;">{{ object.nome_empresa }}</td> 
+        <td style="width: 30%;">{{ object.stand }}</td> 
         <td style="display: flex; justify-content: space-evenly; flex-direction: column; align-items: center;">
-          <a style="width: 30%; margin-bottom: 10px;" href="{% url 'detalhe' reserva.id %}" class="btn btn-primary btn-sm">Detalhe</a>
-          <a style="width: 30%; margin-bottom: 10px;" href="{% url 'reservas-update' reserva.id %}" class="btn btn-primary btn-sm">Editar</a>
-          <a style="width: 30%;" href="{% url 'remover' reserva.id %}" class="btn btn-danger btn-sm">Remover</a>
+          <a style="width: 30%; margin-bottom: 10px;" href="{% url 'detalhe' object.id %}" class="btn btn-primary btn-sm">Detalhe</a> 
+          <a style="width: 30%; margin-bottom: 10px;" href="{% url 'reservas-update' object.id %}" class="btn btn-primary btn-sm">Editar</a> 
+          <a style="width: 30%;" href="{% url 'remover' object.id %}" class="btn btn-danger btn-sm">Remover</a> 
         </td>
       </tr>
       {% endfor %}
