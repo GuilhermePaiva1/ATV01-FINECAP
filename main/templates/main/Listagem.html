@@ -6,7 +6,7 @@
 <div class="mx-auto" style="max-width: 800px;">
     <h3 style="margin-right: 20px;"> Lista de Reservas</h3>
 
-  <a href="{% url 'criar_reserva' %}" class="btn btn-success mb-3">Novo Cadastro</a>
+  <a href="{% url 'main:reservas-create' %}" class="btn btn-success mb-3">Novo Cadastro</a>
 
   <table class="table table-bordered">
     <thead>
@@ -22,9 +22,9 @@
         <td style="width: 40%;">{{ object.nome_empresa }}</td> 
         <td style="width: 30%;">{{ object.stand }}</td> 
         <td style="display: flex; justify-content: space-evenly; flex-direction: column; align-items: center;">
-          <a style="width: 30%; margin-bottom: 10px;" href="{% url 'detalhe' object.id %}" class="btn btn-primary btn-sm">Detalhe</a> 
+          <a style="width: 30%; margin-bottom: 10px;" href="{% url 'reservas-detail' object.id %}" class="btn btn-primary btn-sm">Detalhe</a> 
           <a style="width: 30%; margin-bottom: 10px;" href="{% url 'reservas-update' object.id %}" class="btn btn-primary btn-sm">Editar</a> 
-          <a style="width: 30%;" href="{% url 'remover' object.id %}" class="btn btn-danger btn-sm">Remover</a> 
+          <a style="width: 30%;" href="{% url 'reservas-delete' object.id %}" class="btn btn-danger btn-sm">Remover</a> 
         </td>
       </tr>
       {% endfor %}

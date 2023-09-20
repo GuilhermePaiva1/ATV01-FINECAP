@@ -8,7 +8,6 @@ from core.models import BaseModel
 
 # Create your models here.
 class Stand(BaseModel):
-
     localizacao = models.CharField(
         verbose_name=_("Localização"), max_length=SMALL_CHAR_FIELD_NAME_LENGTH
     )
@@ -24,6 +23,7 @@ class Stand(BaseModel):
 
     def __str__(self):
         return f"{self.pk} | {self.localizacao}"
+
 
 class Reserva(BaseModel):
 

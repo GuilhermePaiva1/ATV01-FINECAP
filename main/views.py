@@ -9,7 +9,7 @@ from .models import Reserva
 #def index(request):
 #    return render(request, 'index.html')
 class HomeView(generic.TemplateView):
-    template_name = "index.html"
+    template_name = "main/index.html"
 
 #def listar_reserva(request):
  #   reservas = reserva.objects.all() 
@@ -17,6 +17,7 @@ class HomeView(generic.TemplateView):
    # return render(request, 'Listagem.html', context)
 class ReservasListView(generic.ListView):
     model = Reserva
+    template_name = "main/Listagem.html"
 
 #def criar_reserva(request):
 #    if request.method == "POST":
@@ -33,6 +34,7 @@ class ReservaCreateView(generic.CreateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("main:Listagem")
+    template_name = "main/reservas-create.html"
 
 #def remover(request, id):
 #    reserva_obj = get_object_or_404(reserva, id=id)  
