@@ -13,7 +13,7 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        {{ form.cnpj }}
+                        {{ form.cnpj_empresa }}
                     </div>
                     <div class="mb-3">
                         <label for="nome_empresa" class="form-label">Nome da empresa</label>
@@ -28,13 +28,12 @@
                         {{ form.stand }}
                     </div>
                     <div class="col-md-1 col-lg-1 col-12">
-                        <div class="br-input">
-                            {{ form.quitado.label_tag }}
+                        <div class="form-check">
                             {{ form.quitado }}
-                        </div>
+                            <label class="form-check-label" for="{{ form.quitado.id_for_label }}">Quitado</label>
+                        </div>                                              
                     </div>
-                    
-                    
+            
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>    
 

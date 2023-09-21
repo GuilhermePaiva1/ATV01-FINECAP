@@ -14,3 +14,9 @@ class ReservaAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Stand, StandAdmin)
 admin.site.register(models.Reserva, ReservaAdmin)
+
+class CategoriaAdmin(admin.ModelAdmin):
+    search_fields = ["categoria_empresa"]
+    readonly_fields = ["updated_by", "created_at"]
+
+admin.site.register(models.Categoria, CategoriaAdmin)

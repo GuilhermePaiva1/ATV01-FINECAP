@@ -15,21 +15,24 @@
         {% block css %}
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
         {% endblock %}
+
+            <!-- Fonte Rawline-->
+    <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"/>
+    <!-- Fonte Raleway-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"/>
+    <!-- Design System de Governo-->
+    <link rel="stylesheet" href="{% static 'node_modules\@govbr-ds\core\dist\core.min.css' %}" />
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+
+    <script defer src="{% static 'node_modules/@govbr-ds/core/dist/core-init.js' %}"></script>
+    <script defer src="{% static 'node_modules/@govbr-ds/core/dist/core.min.js' %}"></script>
     </head>
 
     <style>
         @charset "UTF-8";
-/*!
-* Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+        
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

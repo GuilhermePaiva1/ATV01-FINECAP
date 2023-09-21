@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
-
+from django.contrib import messages
 from .forms import ReservaForm
 from .models import Reserva
 # Create your views here.
@@ -36,6 +36,11 @@ class ReservaCreateView(generic.CreateView):
     success_url = reverse_lazy("main:Listagem")
     template_name = "main/reservas-create.html"
 
+    def form_valid(self, form):
+        print("Formulário é válido")
+        return super().form_valid(form)
+
+
 #def remover(request, id):
 #    reserva_obj = get_object_or_404(reserva, id=id)  
 #    reserva_obj.delete()
@@ -44,6 +49,7 @@ class ReservaDeleteView(generic.DeleteView):
     model = Reserva
     success_url = reverse_lazy("main:Listagem")
 
+
 #def detalhe(request, id):
 #    reserva_obj = get_object_or_404(reserva, id=id) 
 #    context = {'reserva': reserva_obj}
@@ -51,7 +57,9 @@ class ReservaDeleteView(generic.DeleteView):
 class ReservaDetailView(generic.DetailView):
     model = Reserva
 
+
 class ReservaUpdateView(generic.UpdateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("main:Listagem")
+    template_name = "main/reservas-create.html"

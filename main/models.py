@@ -23,13 +23,14 @@ class Stand(BaseModel):
 
     def __str__(self):
         return f"{self.pk} | {self.localizacao}"
+    
+class Categoria(BaseModel):
+    categoria_empresa = models.CharField(max_length=MEDIUM_CHAR_FIELD_NAME_LENGTH)
 
+    def __str__(self):
+        return f"{self.pk} | {self.categoria_empresa}"
 
 class Reserva(BaseModel):
-
-    class Categoria(models.TextChoices):
-        TEC = "TECNOLOGIA", _("Tecnologia")
-        AGRO = "AGRO", _("Agro Negócio")
 
     cnpj_empresa = models.CharField(
         verbose_name=_("CNPJ Empresa"), max_length=SMALL_CHAR_FIELD_NAME_LENGTH, null=True
@@ -41,12 +42,10 @@ class Reserva(BaseModel):
         verbose_name=_("E-mail"),
         max_length=MEDIUM_CHAR_FIELD_NAME_LENGTH,
     )
-    categoria_empresa = models.CharField(
-        verbose_name=_("Categoria Empresa"),
-        max_length=SMALL_CHAR_FIELD_NAME_LENGTH,
-        choices=Categoria.choices,
-    )
+    categoria_empresa = models.ForeignKey(Categoria, on_delete=models.CASCADE,)
+
     quitado = models.BooleanField(_("Quitado"), default=False)
+    
     stand = models.ForeignKey(
         Stand,
         verbose_name=_("Stand"),
