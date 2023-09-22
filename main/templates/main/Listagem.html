@@ -5,25 +5,10 @@
 <br>
 <div class="mx-auto" style="max-width: 800px;">
     <h3 style="margin-right: 20px;"> Lista de Reservas</h3>
-
-  <a href="{% url 'main:reservas-create' %}" class="btn btn-success mb-3">Novo Cadastro</a>
-
   {% if messages %}
-<div class="messages">
-  {% for message in messages %}
-  {% if messages.warning %}
-  <div style="width: 30%; left: 5px;" class="alert alert-danger{{ message.tags }}">
-    {{ message }}
-  </div>
-  {% else %}
-  <div style="width: 30%; left: 5px;" class="alert alert-{{ message.tags }}">
-    {{ message }}
-  </div>
+  {% include "layouts/messages.html" %}
   {% endif %}
-  {% endfor %}
-</div>
-{% endif %}
-
+  <a href="{% url 'main:reservas-create' %}" class="btn btn-success mb-3">Novo Cadastro</a>
   <table class="table table-bordered">
     <thead>
       <tr>

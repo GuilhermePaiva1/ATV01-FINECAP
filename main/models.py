@@ -38,10 +38,6 @@ class Reserva(BaseModel):
     nome_empresa = models.CharField(
         verbose_name=_("Nome Empresa"), max_length=MAX_CHAR_FIELD_NAME_LENGTH
     )
-    email_empresa = models.EmailField(
-        verbose_name=_("E-mail"),
-        max_length=MEDIUM_CHAR_FIELD_NAME_LENGTH,
-    )
     categoria_empresa = models.ForeignKey(Categoria, on_delete=models.CASCADE,)
 
     quitado = models.BooleanField(_("Quitado"), default=False)

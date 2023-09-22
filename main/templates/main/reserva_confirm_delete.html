@@ -1,0 +1,11 @@
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>Definir Reserva</h1>
+    <form method="post" class="form container-fluid p-5">
+        {% csrf_token %}
+        <p>Você tem certeza que quer deletar a reserva "{{ object }}"?</p>
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Confirmar</button>
+    </form>
+</div>
+{% endblock %}
