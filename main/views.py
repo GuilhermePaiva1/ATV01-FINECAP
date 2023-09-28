@@ -12,7 +12,15 @@ class HomeView(generic.TemplateView):
 class ReservasListView(generic.ListView):
     model = Reserva
     template_name = "main/Listagem.html"
+    paginate_by = 5
 
+    def get_context_data(self, **kwargs):
+        kwargs.setdefault("view", self)
+        kwargs['object_list'] = Reserva.objects.all()
+        kwargs['num_reservas'] = Reserva.objects.count()
+        if self.extra_context is not None:
+            kwargs.update(self.extra_context)
+        return kwargs
 
 class ReservaCreateView(views.SuccessMessageMixin,generic.CreateView):
     model = Reserva

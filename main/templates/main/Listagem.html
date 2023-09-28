@@ -6,9 +6,18 @@
   {% if messages %}
       {% include "layouts/messages.html" %}
   {% endif %}
-  <a href="{% url 'main:reservas-create' %}" class="btn btn-success mb-3">
-      <i class="fas fa-plus"></i> Novo Cadastro
-  </a>
+  <div class="d-flex align-items-center">
+    <a href="{% url 'main:reservas-create' %}" class="btn btn-success mb-3" style="margin-top: 10px;">
+        <i class="fas fa-plus"></i> Novo Cadastro
+    </a>
+    <div class="card ml-3" style ="margin-left: 15px;">
+        <div class="card-body">
+            <p class="card-text">Total de Reservas: {{ num_reservas }}</p>
+        </div>
+    </div>
+</div>
+
+
   <table class="table table-striped mt-3">
       <thead class="thead-primary">
           <tr>
@@ -53,4 +62,56 @@
       </tbody>
   </table>
 </div>
+<span class="br-divider my-3"></span>
+
+{% if page_obj.has_other_pages %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">
+                        First
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page_number in page_obj.paginator.page_range %}
+                {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
+                    {% if page_obj.number == page_number %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                        Last
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+
 {%  endblock %}
