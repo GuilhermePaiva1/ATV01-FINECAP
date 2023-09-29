@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from .models import Stand, Reserva
+from stands.models import Stand
 
 class ReservaForm(ModelForm):
 

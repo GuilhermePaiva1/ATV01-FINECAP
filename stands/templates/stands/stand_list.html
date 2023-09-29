@@ -7,12 +7,12 @@
       {% include "layouts/messages.html" %}
   {% endif %}
   <div class="d-flex align-items-center">
-    <a href="{% url 'main:reservas-create' %}" class="btn btn-success mb-3" style="margin-top: 10px;">
+    <a href="{% url 'stands:stands-create' %}" class="btn btn-success mb-3" style="margin-top: 10px;">
         <i class="fas fa-plus"></i> Novo Cadastro
     </a>
     <div class="card ml-3" style ="margin-left: 15px;">
         <div class="card-body">
-            <p class="card-text">Total de Reservas: {{ num_reservas }}</p>
+            <p class="card-text">Total de Stands: {{ num_stands }}</p>
         </div>
     </div>
 </div>
@@ -21,35 +21,28 @@
   <table class="table table-striped mt-3">
       <thead class="thead-primary">
           <tr>
-              <th>Detalhes</th>
-              <th>CNPJ</th>
-              <th>Nome da Empresa</th>
-              <th>Categoria</th>
-              <th>Quitado</th>
-              <th>Ações</th>
+              <th>Localização</th>
+              <th>Valor</th>
           </tr>
       </thead>
       <tbody>
           {% for object in object_list %}
               <tr>
                   <td>
-                      <a href="{% url 'main:reservas-detail' object.id %}" style="margin-left: 15px;">
+                      <a href="{% url 'stands:stands-detail' object.id %}" style="margin-left: 15px;">
                           &#128269;
                       </a>
                   </td>
-                  <td>{{ object.cnpj_empresa }}</td>
-                  <td>{{ object.nome_empresa }}</td>
-                  <td>{{ object.categoria_empresa }}</td>
-                  <td>{% if object.quitado %} Sim {% else %} Não {% endif %}</td>
+                  <td>{{ object.localizacao }}</td>
+                  <td>{{ object.valor }}</td>
                   <td>
                       <div class="d-flex align-items-center">
-                          <a href="{% url 'main:reservas-update' object.id %}" class="btn btn-primary btn-sm mr-2">
+                          <a href="{% url 'stands:stands-update' object.id %}" class="btn btn-primary btn-sm mr-2">
                               <i class="fas fa-edit"></i>
                           </a>
-                          <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExemplo-{{ object.id }}">
+                          <a href="{% url 'stands:stands-delete' object.id %}" class="btn btn-danger btn-sm">
                               <i class="fas fa-trash"></i>
                           </a>
-                          {% include "main/reserva_confirm_delete.html" %}
                       </div>
                   </td>
               </tr>

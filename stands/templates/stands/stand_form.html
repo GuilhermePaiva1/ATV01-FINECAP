@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+
+{% block body %}
+<br>
+
+    <main>
+    <div class="container px-4 px-lg-5 mt-5">
+        <section class="sct-form">
+            <div class="form">
+                <h1 style="margin-bottom: 40px;">Reserve o seu stand já!</h1>
+                   
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="cnpj" class="form-label">Localização</label>
+                        {{ form.localizacao }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome_empresa" class="form-label">Valor</label>
+                        {{ form.valor }}
+                    </div>          
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>    
+
+            </div>
+     
+        </section>
+    </div> 
+    
+    </main>
+
+    {% endblock %}
+    

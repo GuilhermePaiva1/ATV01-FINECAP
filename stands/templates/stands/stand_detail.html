@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+<div class="container my-5">
+    <a class="btn btn-outline-primary btn-sm mb-3" href="{% url 'stands:stands-list' %}">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <div class="card mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+            <h3 class="card-title text-primary">{{ object.localizacao }}</h3>
+            <p class="card-text"><strong>Valor:</strong> {{ object.valor }}</p>
+            
+            <div class="d-flex align-items-center">
+              <a href="{% url 'stands:stands-update' object.id %}" class="btn btn-primary btn-sm mr-2">
+                  <i class="fas fa-edit"></i>
+              </a>
+              <a href="{% url 'stands:stands-delete' object.id %}" class="btn btn-danger btn-sm">
+                  <i class="fas fa-trash"></i>
+              </a>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

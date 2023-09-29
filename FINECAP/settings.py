@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'core',
     'bootstrap4',
+    'stands',
 ]
 
 MIDDLEWARE = [
