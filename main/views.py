@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib.messages import views
 from .forms import ReservaForm
 from .models import Reserva
+from django.db.models import Q
 
 class HomeView(generic.TemplateView):
     template_name = "main/index.html"
@@ -14,13 +15,13 @@ class ReservasListView(generic.ListView):
     template_name = "main/Listagem.html"
     paginate_by = 5
 
+    def get_queryset(self):
+        return Reserva.objects.all()
+
     def get_context_data(self, **kwargs):
-        kwargs.setdefault("view", self)
-        kwargs['object_list'] = Reserva.objects.all()
-        kwargs['num_reservas'] = Reserva.objects.count()
-        if self.extra_context is not None:
-            kwargs.update(self.extra_context)
-        return kwargs
+        context = super().get_context_data(**kwargs)
+        context['num_reservas'] = Reserva.objects.count()
+        return context
 
 class ReservaCreateView(views.SuccessMessageMixin,generic.CreateView):
     model = Reserva
