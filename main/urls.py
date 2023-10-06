@@ -3,7 +3,6 @@ from . import views
 
 app_name = "main"
 urlpatterns = [
-    path('', views.HomeView.as_view(), name='index'),
     path('reservas/list/', views.ReservasListView.as_view(), name='Listagem'),
     path('reservas/detail/<int:pk>/', views.ReservaDetailView.as_view(), name='reservas-detail'),
     path('reservas/update/<int:pk>/', views.ReservaUpdateView.as_view(), name='reservas-update'),
