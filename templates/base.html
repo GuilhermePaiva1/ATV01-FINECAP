@@ -38,19 +38,27 @@
     </head>
 
     <body>
+
       <!-- Navigation-->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container px-4 px-lg-5">
               <a class="navbar-brand" href="{% url 'core:home' %}">Finecap</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                      <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'main:Listagem' %}">Reservas</a></li>
-                      <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'stands:stands-list' %}">Stands</a></li>
-                  </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                  {% if user.is_authenticated %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Gerencia
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="{% url 'main:Listagem' %}">Reservas</a></li>
+                      <li><a class="dropdown-item" href="{% url 'stands:stands-list' %}">Stands</a></li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                </ul>
                   <section class="d-flex">
-                        <a class="navbar-brand btn btn-outline-dark" href="{% url 'main:reservas-create' %}">Faça sua Reserva</a>
-                      </button>
                       <div class="header-login">
                         {% if request.user.is_anonymous %}
                             <div class="header-sign-in">
@@ -97,7 +105,9 @@
   
     <main>    
       <div class="main-content pl-sm-3 mt-4" id="main-content">
-
+        {% if messages %}
+        {% include "layouts/messages.html" %}
+        {% endif %}
         {% block body %}
 
         {% endblock %}

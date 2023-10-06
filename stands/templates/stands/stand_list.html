@@ -3,9 +3,6 @@
 {% block body %}
 <div class="container mt-4">
   <h3 class="mb-4">Lista de Reservas</h3>
-  {% if messages %}
-      {% include "layouts/messages.html" %}
-  {% endif %}
   <div class="d-flex align-items-center">
     <a href="{% url 'stands:stands-create' %}" class="btn btn-success mb-3" style="margin-top: 10px;">
         <i class="fas fa-plus"></i> Novo Cadastro
