@@ -8,7 +8,7 @@ class ReservaForm(ModelForm):
     class Meta:
         model = Reserva
         widgets = {
-            'cnpj_empresa' : forms.TextInput(attrs={'class': 'form-control',"placeholder": "CNPJ da empresa", }),
+            'cnpj_empresa' : forms.TextInput(attrs={'class': 'cnpj form-control',"placeholder": "CNPJ da empresa", }),
             'nome_empresa' : forms.TextInput(attrs={'class': 'form-control',"placeholder": "Nome da empresa", }),
             'categoria_empresa' : forms.Select(attrs={'class': 'form-control', }),
             'quitado': forms.CheckboxInput(attrs={'class': 'form-check-input'}),

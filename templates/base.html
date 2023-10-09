@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -39,69 +39,79 @@
 
     <body>
 
-      <!-- Navigation-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container px-4 px-lg-5">
-              <a class="navbar-brand" href="{% url 'core:home' %}">Finecap</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                  {% if user.is_authenticated %}
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Gerencia
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="{% url 'main:Listagem' %}">Reservas</a></li>
-                      <li><a class="dropdown-item" href="{% url 'stands:stands-list' %}">Stands</a></li>
-                    </ul>
-                  </li>
-                  {% endif %}
-                </ul>
-                  <section class="d-flex">
-                      <div class="header-login">
-                        {% if request.user.is_anonymous %}
-                            <div class="header-sign-in">
-                                <a href="#" class="btn btn-primary" type="button" data-trigger="login">
-                                    <i class="fas fa-user" aria-hidden="true"></i> Entrar
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="header-avatar">
-                                <div class="avatar dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-angle-down" aria-hidden="true"></i> {{ request.user }}
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="userMenu">
-                                        <div class="row">
-                                            <div class="col-10">
-                                                <span class="text-bold" style="margin-left:10px;">{{ request.user }}</span><br/>
-                                                <small style="margin-left:10px;">{{ request.user.email }}</small>
-                                            </div>
-                                            <div class="col-2">
-                                                <form method="post" action="{% url 'account_logout' %}">
-                                                    {% csrf_token %}
-                                                    {% if redirect_field_value %}
-                                                        <input type="hidden" name="{{ redirect_field_name }}"
-                                                               value="{{ redirect_field_value }}"/>
-                                                    {% endif %}
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sair
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                  </section>
-              </div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand" href="{% url 'core:home' %}">Finecap</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Gerencia
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'main:Listagem' %}">Reservas</a></li>
+            <li><a class="dropdown-item" href="{% url 'stands:stands-list' %}">Stands</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+      <section class="d-flex">
+        <div class="header-login">
+          {% if request.user.is_anonymous %}
+          <div class="btn-group" role="group" aria-label="Entrar ou Cadastrar">
+            <a href="#" class="btn btn-primary" type="button" data-trigger="login">
+              <i class="fas fa-user" aria-hidden="true"></i> Entrar
+            </a>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary" type="button">
+              <i class="fas fa-user-plus" aria-hidden="true"></i> Cadastrar-se
+            </a>
           </div>
-      </nav>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <!-- Botão de sair para usuários autenticados -->
+          <div class="header-avatar">
+            <div class="avatar dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-angle-down" aria-hidden="true"></i> {{ request.user }}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="userMenu">
+                <div class="row">
+                  <div class="col-10">
+                    <span class="text-bold" style="margin-left:10px;">{{ request.user }}</span><br />
+                    <small style="margin-left:10px;">{{ request.user.email }}</small>
+                  </div>
+                  <div class="col-2">
+                    <form method="post" action="{% url 'account_logout' %}">
+                      {% csrf_token %}
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}"
+                             value="{{ redirect_field_value }}" />
+                      {% endif %}
+                      <button class="btn btn-danger" type="submit">
+                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sair
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+</nav>
+
+
   
     <main>    
       <div class="main-content pl-sm-3 mt-4" id="main-content">
@@ -124,6 +134,7 @@
       <script>
         $(document).ready(function(){
           $('.money').mask('0000,00', {reverse: true})
+          $('.cnpj').mask('00.000.000/0000-00', {reverse: true})
         })
       </script>
       {% endblock javascript %}
