@@ -1,19 +1,25 @@
 {% if form.errors %}
-<div class="br-message warning" role="alert">
-  <div class="icon"><i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="d-flex align-items-center">
+    <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+    <div class="ml-3">
+      <strong>Atenção.</strong>
+      <ul class="mb-0">
+        {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        {% if form.errors %}
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li><strong>{{ field.label }}:</strong> {{ error|escape }}</li>
+            {% endfor %}
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
   </div>
-  <div class="content"><span class="message-title">Atenção.</span>
-    <span class="message-body">
-      {% for error in form.non_field_errors %}
-      <p>{{error}}</p>
-      {% endfor %}
-      {% include "_form_field_error.html" %}
-    </span>
-  </div>
-  <div class="close">
-    <button class="br-button circle small" type="button" aria-label="Fechar"><i class="fas fa-times"
-        aria-hidden="true"></i>
-    </button>
-  </div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 {% endif %}

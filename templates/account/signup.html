@@ -41,11 +41,8 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
           </div>
-          <input type="password" name="password1" class="form-control" id="id_password1" placeholder="{% trans 'Password' %}">
+          <input id="show-password-button" type="password" name="password1" class="form-control" id="id_password1" placeholder="{% trans 'Password' %}">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" aria-label="Show Password">
-              <i class="fas fa-eye" aria-hidden="true"></i>
-            </button>
           </div>
         </div>
         <small class="text-muted">{% trans "Your password must contain at least 8 characters and should not be too similar to your personal information." %}</small>
@@ -56,7 +53,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
           </div>
-          <input type="password" name="password2" class="form-control" id="id_password2" placeholder="{% trans 'Confirm Password' %}">
+          <input id="show-password-button" type="password" name="password2" class="form-control" id="id_password2" placeholder="{% trans 'Confirm Password' %}">
         </div>
       </div>
       {% if redirect_field_value %}
