@@ -5,8 +5,9 @@ from django.views import generic
 from django.contrib.messages import views
 from .forms import ReservaForm
 from .models import Reserva
+from users.permissions import GerentePermission
 
-class ReservasListView(LoginRequiredMixin, generic.ListView):
+class ReservasListView(GerentePermission, LoginRequiredMixin, generic.ListView):
     model = Reserva
     template_name = "main/Listagem.html"
     paginate_by = 5
@@ -19,7 +20,7 @@ class ReservasListView(LoginRequiredMixin, generic.ListView):
         context['num_reservas'] = Reserva.objects.count()
         return context
 
-class ReservaCreateView(LoginRequiredMixin, views.SuccessMessageMixin,generic.CreateView):
+class ReservaCreateView(GerentePermission, LoginRequiredMixin, views.SuccessMessageMixin,generic.CreateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("main:Listagem")
@@ -28,17 +29,17 @@ class ReservaCreateView(LoginRequiredMixin, views.SuccessMessageMixin,generic.Cr
 
 
 
-class ReservaDeleteView(LoginRequiredMixin, views.SuccessMessageMixin, generic.DeleteView):
+class ReservaDeleteView(GerentePermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.DeleteView):
     model = Reserva
     success_url = reverse_lazy("main:Listagem")
     success_message = "Reserva deletada com sucesso"
 
 
-class ReservaDetailView(LoginRequiredMixin, generic.DetailView):
+class ReservaDetailView(GerentePermission, LoginRequiredMixin, generic.DetailView):
     model = Reserva
 
 
-class ReservaUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class ReservaUpdateView(GerentePermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("main:Listagem")
