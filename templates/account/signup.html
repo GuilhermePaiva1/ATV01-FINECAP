@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% load account socialaccount %}
 {% load static %}
@@ -41,8 +40,11 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
           </div>
-          <input id="show-password-button" type="password" name="password1" class="form-control" id="id_password1" placeholder="{% trans 'Password' %}">
+          <input type="password" name="password1" class="form-control toggle-password" placeholder="{% trans 'Password' %}">
           <div class="input-group-append">
+            <button type="button" class="btn btn-outline-secondary toggle-button" aria-label="Mostrar Senha">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
         <small class="text-muted">{% trans "Your password must contain at least 8 characters and should not be too similar to your personal information." %}</small>
@@ -53,7 +55,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
           </div>
-          <input id="show-password-button" type="password" name="password2" class="form-control" id="id_password2" placeholder="{% trans 'Confirm Password' %}">
+          <input type="password" name="password2" class="form-control toggle-password" placeholder="{% trans 'Confirm Password' %}">
+          <div class="input-group-append">
+            <button type="button" class="btn btn-outline-secondary toggle-button" aria-label="Mostrar Senha">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
       {% if redirect_field_value %}
@@ -64,9 +71,6 @@
       </div>
     </form>
     <hr>
-    <p class="first-access-href text-center">
-      <a style="text-decoration-line: none" href="{% url 'account_reset_password' %}">{% translate "First Access?" %}</a>
-    </p>
   </div>
 </div>
 

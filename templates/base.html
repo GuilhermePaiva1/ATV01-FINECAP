@@ -148,20 +148,28 @@
       </script>
 
       <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const showPasswordButton = document.getElementById("show-password-button");
-          const passwordInput = document.querySelector("input[name='password']");
+        function togglePassword(button, passwordInput) {
+            button.addEventListener("click", function() {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                } else {
+                    passwordInput.type = "password";
+                }
+            });
+        }
         
-          showPasswordButton.addEventListener("click", function() {
-            if (passwordInput.type === "password") {
-              passwordInput.type = "text";
-            } else {
-              passwordInput.type = "password";
-            }
-          });
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleButtons = document.querySelectorAll(".toggle-button");
+            const passwordInputs = document.querySelectorAll(".toggle-password");
+        
+            toggleButtons.forEach(function(button, index) {
+                togglePassword(button, passwordInputs[index]);
+            });
         });
         </script>
         
+        
+
       {% endblock javascript %}
   </body>
 

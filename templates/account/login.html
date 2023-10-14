@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% load account socialaccount %}
 {% load static %}
@@ -33,8 +32,11 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
           </div>
-          <input type="password" name="password" class="form-control" placeholder="Digite sua senha de segurança">
+          <input type="password" name="password" class="form-control toggle-password" placeholder="Digite sua senha de segurança">
           <div id="show-password-button" class="input-group-append">
+            <button type="button" id="toggle-password" class="btn btn-outline-secondary toggle-button" aria-label="Mostrar Senha">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </div>
